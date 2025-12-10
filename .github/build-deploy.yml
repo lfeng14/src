@@ -1,0 +1,27 @@
+name: My Service Build and Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy_staging:
+    name: Staging Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 记录 Staging 发布
+        run: echo "这次运行是 staging 部署"
+      - name: pull代码
+        uses: actions/checkout@v2
+      - name: 设置要传递给测试的 URL
+        run: |
+          echo "ENVIRONMENT=http://my-site.com" >> $GITHUB_ENV
+      - name: 构建和部署
+        run: |
+          echo "构建和部署"
+      - name: 触发 Playwright 测试作业
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: lfeng14/target
+          event-type: run-my-tests
+          client-payload: '{"github": ${{ toJson(github) }}}'
