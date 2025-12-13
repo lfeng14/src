@@ -1,8 +1,8 @@
 name: My Service Build and Deploy
 on:
-  push:
-    branches:
-      - main
+  pull_request_target:
+    types: [ opened, synchronize, reopened, labeled, unlabeled ]
+
 jobs:
   repository-dispatch-jdk-test:
     name: "trigger jeandle jdk tier1 test"
