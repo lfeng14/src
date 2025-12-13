@@ -16,7 +16,7 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: lfeng14/target
           event-type: "dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}"
-          client-payload: |  
+          client_payload: |  
             {
               "id": "dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}",
               "target_llvm_repo": "${{ github.event.pull_request.head.repo.full_name }}",
