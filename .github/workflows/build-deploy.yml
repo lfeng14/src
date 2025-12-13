@@ -13,10 +13,10 @@ jobs:
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: lfeng14/target
-          event-type: "dispatch-${{ github.event.pull_request.number }}-${{ replace(github.event.pull_request.head.repo.full_name, '/', '-') }}"
+          event-type: "dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}"
           client-payload: |  
             {
-              "id": "dispatch-${{ github.event.pull_request.number }}-${{ replace(github.event.pull_request.head.repo.full_name, '/', '-') }}",
+              "id": "dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}",
               "target_llvm_repo": "${{ github.event.pull_request.head.repo.full_name }}",
               "target_llvm_ref": "${{ github.event.pull_request.head.ref }}"
             }
@@ -26,7 +26,7 @@ jobs:
           GH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
           TARGET_REPO: "lfeng14/target"
           # Generate the exact ID to search for in step names
-          SEARCH_ID: "dispatch-${{ github.event.pull_request.number }}-${{ replace(github.event.pull_request.head.repo.full_name, '/', '-') }}"
+          SEARCH_ID: "dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}"
         run: |
           # --- Phase 1: Find the triggered workflow run by matching step name ---
           echo "Searching for workflow run with step containing: '$SEARCH_ID'"
