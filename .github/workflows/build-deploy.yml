@@ -1,8 +1,8 @@
 name: My Service Build and Deploy
 on:
-  pull_request_target:
-    types: [ opened, synchronize, reopened, labeled, unlabeled ]
-
+  push:
+    branches:
+      - main
 jobs:
   repository-dispatch-jdk-test:
     name: "trigger jeandle jdk tier1 test"
@@ -28,6 +28,7 @@ jobs:
           # Generate the exact ID to search for in step names
           SEARCH_ID: "dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}"
         run: |
+          set -x
           # --- Phase 1: Find the triggered workflow run by matching step name ---
           echo "Searching for workflow run with step containing: '$SEARCH_ID'"
           FOUND_RUN_ID=""
