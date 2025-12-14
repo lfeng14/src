@@ -14,13 +14,15 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          # repository: jeandle/jeandle-jdk
           repository: lfeng14/target
           event-type: "dispatch-from-llvm"
-          client-payload: |  
+          client-payload: |
             {
-              "id": "dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}",
+              "id": "Dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}-${{ github.event.pull_request.labels.*.name }}-${{ github.event.pull_request.head.sha }}",
               "target_llvm_repo": "${{ github.event.pull_request.head.repo.full_name }}",
-              "target_llvm_ref": "${{ github.event.pull_request.head.ref }}"
+              "target_llvm_ref": "${{ github.event.pull_request.head.ref }}",
+              "pull_request_labels": "${{ github.event.pull_request.labels.*.name }}"
             }
 
       - name: sync-jdk-rest
