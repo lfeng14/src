@@ -30,7 +30,7 @@ jobs:
           GH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
           TARGET_REPO: "lfeng14/target"
           # Generate the exact ID to search for in step names
-          SEARCH_ID: "dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}"
+          SEARCH_ID: "Dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}-${{ github.event.pull_request.labels.*.name }}-${{ github.event.pull_request.head.sha }}"
         run: |
           set -x
           # --- Phase 1: Find the triggered workflow run by matching step name ---
