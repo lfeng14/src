@@ -22,7 +22,7 @@ jobs:
               "id": "Dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}-${{ github.event.pull_request.labels.*.name }}-${{ github.event.pull_request.head.sha }}",
               "target_llvm_repo": "${{ github.event.pull_request.head.repo.full_name }}",
               "target_llvm_ref": "${{ github.event.pull_request.head.ref }}",
-              "pull_request_labels": "${{ toJSON(github.event.pull_request.labels.*.name) }"
+              "pull_request_labels": "${{ toJSON(github.event.pull_request.labels.*.name) }}"
             }
 
       - name: sync-jdk-rest
