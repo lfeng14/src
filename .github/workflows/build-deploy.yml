@@ -33,7 +33,7 @@ jobs:
           # Generate the exact ID to search for in step names
           SEARCH_ID: "Dispatch-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.repo.full_name }}-${{ github.event.pull_request.head.ref }}-${{ github.run_id }}"
         run: |
-          set -x
+          exit 1;
           # --- Phase 1: Find the triggered workflow run by matching step name ---
           echo "Searching for workflow run with step containing: '$SEARCH_ID'"
           FOUND_RUN_ID=""
